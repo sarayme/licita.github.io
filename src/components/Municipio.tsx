@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { If, Then } from "react-if";
 import Title from "./Title";
 import Charts from "./charts/Charts";
-import { anoSelect } from "@/app/pb/[municipio]/[ano]/anos"
+import { anoSelect } from "../app/pb/[municipio]/[ano]/anos"
 import { useMemo } from "react";
 interface MunicipioProps {
     municipioId: string;
@@ -50,7 +50,7 @@ export default function Municipio({
                     <Then>
                         <Link
                             href="/"
-                            className="bg-[#5AB290] px-6 pt-5 rounded-[82px] w-[4.5rem] h-16"
+                            className="bg-[#152544] px-6 pt-5 rounded-[82px] w-[4.5rem] h-16"
                         >
                             <BackIcon />
                         </Link>
