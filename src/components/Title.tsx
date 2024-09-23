@@ -8,7 +8,7 @@ interface TitleProps {
 }
 
 export default function Title({ municipio, ano }: TitleProps) {
-  const [titleText, setTitleText] = useState("Alagoas");
+  const [titleText, setTitleText] = useState("Paraíba");
   const buildTitle = (municipio: string) => {
     if (municipio !== "geral") {
       fetch(`https://raw.githubusercontent.com/exoonero/extrator/main/docs/site/dados/${municipio}.json`, {})
@@ -31,11 +31,11 @@ export default function Title({ municipio, ano }: TitleProps) {
     <h1 className=" text-2xl 2xl:text-3xl 3xl:text-[2.4375rem]  font-semibold lg:w-[42.93rem] leading-10">
       <If condition={ano === "geral"}>
         <Then>
-          Acompanhe as licitações que aconteceram em
+          Acompanhe as licitações que aconteceram em:
           <span className="text-[#4a7ba3]">{(" " + titleText) as string}</span>
         </Then>
         <Else>
-          Acompanhe as licitações que aconteceram em
+          Acompanhe as licitações que aconteceram em:
           <span className="text-[#4a7ba3]">{(" " + titleText) as string} - {(" " + ano) as string}</span>
         </Else>
       </If>
