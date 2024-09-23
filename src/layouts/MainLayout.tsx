@@ -34,14 +34,11 @@ export function MainLayout({ children, activeButton }: MainLayoutProps) {
 
   return (
       <div className={sourceSansPro.className}>
-        {/* Navbar agora está no topo */}
         <Navbar activeButton={activeButton} />
 
-        {/* Wrapper geral com conteúdo */}
         <div className="h-screen flex flex-col">
-          {/* Conteúdo principal abaixo da Navbar */}
           <div className="flex flex-1">
-            <aside className="hidden xl:w-[28.875rem] 3xl:w-[30rem] bg-[#4AA381] pl-12 pr-9 3xl:pt-12 lg:pt-9 lg:flex flex-col 3xl:gap-y-[2.6175rem] lg:gap-y-[2.5rem] relative overflow-hidden ">
+            <aside className="hidden xl:w-[28.875rem] 3xl:w-[30rem] bg-[#4a7ba3] pl-12 pr-9 3xl:pt-12 lg:pt-9 lg:flex flex-col 3xl:gap-y-[2.6175rem] lg:gap-y-[2.5rem] relative overflow-hidden ">
               <div className="w-full flex flex-col gap-y-3 3xl:gap-y-5">
                 <h1 className="text-white text-5xl lg:text-[2.56rem] font-semibold max-w-[22rem]">
                   Confira licitações de uma maneira mais amigável
@@ -59,7 +56,7 @@ export function MainLayout({ children, activeButton }: MainLayoutProps) {
                 </p>
                 <Link
                     href="/sobre"
-                    className="bg-[#EDDA46] hover:bg-[#dac83f] 3xl:w-[15.125rem] lg:w-[12.5rem] text-center text-[#376E59] hover:text-[#f3fffa] h-[3.625rem] flex items-center rounded-[5.125rem] shadow-md shadow-black/30 "
+                    className="bg-[#152544] hover:bg-[#dac83f] 3xl:w-[15.125rem] lg:w-[12.5rem] text-center text-[#E8EEF1] hover:text-[#f3fffa] h-[3.625rem] flex items-center rounded-[5.125rem] shadow-md shadow-black/30 "
                 >
                   <span className="w-full font-normal">Sobre o projeto</span>
                 </Link>
@@ -84,7 +81,6 @@ export function MainLayout({ children, activeButton }: MainLayoutProps) {
               />
             </aside>
 
-            {/* Conteúdo principal ao lado */}
             <main className="bg-[#F5F7FB] w-full overflow-y-auto px-[2.875rem] pt-[3.25rem] pb-6">
               {children}
             </main>

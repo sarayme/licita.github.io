@@ -32,11 +32,11 @@ export default function Title({ municipio, ano }: TitleProps) {
       <If condition={ano === "geral"}>
         <Then>
           Acompanhe as licitações que aconteceram em
-          <span className="text-[#4AA381]">{(" " + titleText) as string}</span>
+          <span className="text-[#4a7ba3]">{(" " + titleText) as string}</span>
         </Then>
         <Else>
           Acompanhe as licitações que aconteceram em
-          <span className="text-[#4AA381]">{(" " + titleText) as string} - {(" " + ano) as string}</span>
+          <span className="text-[#4a7ba3]">{(" " + titleText) as string} - {(" " + ano) as string}</span>
         </Else>
       </If>
 
