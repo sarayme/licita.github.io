@@ -4,6 +4,7 @@ import {
     ExoneraLogo,
     NewsIcon,
     GithubIcon,
+    LicitaAbertaBlueLogo
 } from "@/assets/svgs/icons";
 import clsx from "clsx";
 import Link from "next/link";
@@ -14,9 +15,9 @@ interface NavbarProps {
 
 export default function Navbar({ activeButton }: NavbarProps) {
     return (
-        <nav className="flex items-center justify-between w-full bg-[#f0f4f8] p-4 shadow-lg">
+        <nav className="flex items-center justify-between w-full bg-[#4a7ba3] p-4 shadow-lg">
             <div className="flex items-center">
-                <ExoneraLogo className="w-16 h-auto" />
+                <LicitaAbertaBlueLogo className="w-16 h-auto" />
             </div>
 
             <div className="flex items-center space-x-8">
