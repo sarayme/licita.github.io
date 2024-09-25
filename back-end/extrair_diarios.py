@@ -1,6 +1,6 @@
 import json
 import sys
-from diario_ama import extrair_diarios_municipais
+from diario_pb import extrair_diarios_municipais
 
 
 def cria_arquivos(nome_arquivo_preffix: str, diarios: dict):

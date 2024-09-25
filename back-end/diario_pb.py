@@ -6,7 +6,7 @@ import diario_municipal
 # Exceções Notáveis
 # String: VAMOS, município Poço das Trincheiras, 06/01/2022, ato CCB3A6AB
 re_nomes_municipios = (
-    r"ESTADO DE ALAGOAS(?:| )\n{1,2}PREFEITURA MUNICIPAL DE (.*\n{0,2}(?!VAMOS).*$)\n\s(?:\s|SECRETARIA)")
+    r"ESTADO DA PARAIBA(?:| )\n{1,2}PREFEITURA MUNICIPAL DE (.*\n{0,2}(?!VAMOS).*$)\n\s(?:\s|SECRETARIA)")
 
 
 def extrair_diarios_municipais(texto_diario: str):
@@ -14,16 +14,16 @@ def extrair_diarios_municipais(texto_diario: str):
 
     # Processamento
     linhas_apagar = []  # slice de linhas a ser apagadas ao final.
-    ama_header = texto_diario_slice[0]
-    ama_header_count = 0
+    pb_header = texto_diario_slice[0]
+    pb_header_count = 0
     codigo_count = 0
     codigo_total = texto_diario.count("Código Identificador")
 
     for num_linha, linha in enumerate(texto_diario_slice):
-        # Remoção do cabeçalho AMA, porém temos que manter a primeira aparição.
-        if linha.startswith(ama_header):
-            ama_header_count += 1
-            if ama_header_count > 1:
+        # Remoção do cabeçalho PB, porém temos que manter a primeira aparição.
+        if linha.startswith(pb_header):
+            pb_header_count += 1
+            if pb_header_count > 1:
                 linhas_apagar.append(num_linha)
 
         # Remoção das linhas finais
@@ -42,14 +42,14 @@ def extrair_diarios_municipais(texto_diario: str):
         re_nomes_municipios, texto_diario, re.MULTILINE)
     for municipio in nomes_municipios:
         municipio = diario_municipal.Municipio(municipio)
-        texto_diarios[municipio] = ama_header + '\n\n'
+        texto_diarios[municipio] = pb_header + '\n\n'
 
     num_linha = 0
     municipio_atual = None
     while num_linha < len(texto_diario_slice):
         linha = texto_diario_slice[num_linha].rstrip()
 
-        if linha.startswith("ESTADO DE ALAGOAS"):
+        if linha.startswith("ESTADO DA PARAIBA"):
             nome = nome_municipio(texto_diario_slice, num_linha)
             if nome is not None:
                 municipio_atual = diario_municipal.Municipio(nome)
@@ -65,7 +65,7 @@ def extrair_diarios_municipais(texto_diario: str):
 
     diarios = []
     for municipio, diario in texto_diarios.items():
-        diarios.append(diario_municipal.Diario(municipio, ama_header, diario))
+        diarios.append(diario_municipal.Diario(municipio, pb_header, diario))
 
     return diarios
 

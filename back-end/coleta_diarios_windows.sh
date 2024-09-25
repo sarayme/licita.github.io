@@ -10,7 +10,7 @@ DATA_DIR=${ROOT_DIR}/data
 OUT_DIR=${DATA_DIR}/out
 REPO_DIR=${DATA_DIR}/qd
 DATA_COLLECTION_DIR=${REPO_DIR}/data_collection
-QD_DOWNLOAD_DIR=${REPO_DIR}/data_collection/data/2700000
+QD_DOWNLOAD_DIR=${REPO_DIR}/data_collection/data/2500000
 DOWNLOAD_DIR=${DATA_DIR}/diarios
 
 mkdir -p ${DATA_DIR}
@@ -29,7 +29,7 @@ py -m pip install -r ${DATA_COLLECTION_DIR}/requirements-dev.txt --no-deps
 
 # Coletando diários e movendo para a pasta diários.
 cd ${DATA_COLLECTION_DIR}
-scrapy crawl al_associacao_municipios -a start_date=${START_DATE} -a end_date=${END_DATE} > ${OUT_DIR}/scrapy.out 2> ${OUT_DIR}/scrapy.err
+scrapy crawl pb_associacao_municipios -a start_date=${START_DATE} -a end_date=${END_DATE} > ${OUT_DIR}/scrapy.out 2> ${OUT_DIR}/scrapy.err
 for dir in `dir -da ${QD_DOWNLOAD_DIR}/*`
 do
     # Importante pois algumas datas possuem mais de um diário (tem os extras).
