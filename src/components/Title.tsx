@@ -11,7 +11,7 @@ export default function Title({ municipio, ano }: TitleProps) {
   const [titleText, setTitleText] = useState("Paraíba");
   const buildTitle = (municipio: string) => {
     if (municipio !== "geral") {
-      fetch(`https://raw.githubusercontent.com/exoonero/extrator/main/docs/site/dados/${municipio}.json`, {})
+      fetch(`https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/${municipio}.json`, {})
         .then((response) =>
           response.json()
         )

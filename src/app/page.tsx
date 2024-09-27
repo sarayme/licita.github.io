@@ -6,6 +6,8 @@ import TotalAtos from "@/components/charts/TotalAtos";
 import { MainLayout } from "@/layouts/MainLayout";
 import Municipio from "@/components/Municipio";
 import Head from "next/head";
+import TotalLicitacoes from "@/components/charts/TotalLicitacao";
+import TotalValoresLicitacoes from "@/components/charts/TotalValoresLicitacao";
 
 
 export default function Home() {
@@ -16,11 +18,9 @@ export default function Home() {
       </Head>
       <MainLayout activeButton={"Home"}>
         <Municipio municipioId={"geral"} backActive={false} ano={"geral"}>
-          <TotalAtos municipio={"geral"} ano={"todos"} />
-          <CidadesNomeacao />
-          <CidadesExoneracao />
+          <TotalLicitacoes municipio={"geral"} ano={"todos"} />
+          <TotalValoresLicitacoes municipio={"geral"} ano={"todos"} />
         </Municipio>
-        <Footer />
       </MainLayout>
     </main>
   );

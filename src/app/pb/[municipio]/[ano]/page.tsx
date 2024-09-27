@@ -5,6 +5,8 @@ import { MainLayout } from "@/layouts/MainLayout";
 import Municipio from "@/components/Municipio";
 import { If, Then, Else } from "react-if";
 import { ano } from './consts';
+import TotalValoresLicitacoes from "@/components/charts/TotalValoresLicitacao";
+import TotalLicitacoes from "@/components/charts/TotalLicitacao";
 
 interface Params {
   municipio: string;
@@ -21,9 +23,9 @@ const AnoPage: React.FC<{ params: Params }> = ({ params }) => {
     <main>
       <MainLayout activeButton={"Home"}>
         <Municipio municipioId={municipio} backActive={true} ano={ano}>
-          <TotalAtos municipio={municipio} ano={ano} />
+          <TotalLicitacoes municipio={municipio} ano={ano} />
+          <TotalValoresLicitacoes municipio={municipio} ano={ano} />
         </Municipio>
-        <Footer />
       </MainLayout>
     </main>
   );

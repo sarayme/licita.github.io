@@ -99,13 +99,14 @@ export default function Sobre() {
         <div className="flex flex-col md:flex-row text-xs text-[#6C6C6C] gap-x-10 items-center justify-center">
           <LicitaAbertaGrayLogo className="w-16 scale-125 md:ml-5 md:w-24 3xl:w-20" />
           <p>
-            O nome do projeto “LicitaAberta” nasce do trocadilho formado entre as
-            palavras “Exo”, de exoneração, e “onero”, de algo que “onera” os
-            cofres públicos. Reza a lenda que a última palavra faz referência ao
-            imperador romano “Nero” 🔥 , mas isso é uma outra estória…
+            O nome do projeto LicitaAberta reflete o seu principal objetivo:
+            trazer mais transparência e acessibilidade às informações de licitações públicas no Brasil.
+            A palavra Licita faz referência ao processo licitatório, enquanto Aberta reforça a ideia
+            de disponibilizar dados de forma clara e acessível para toda a sociedade.
+            O projeto busca empoderar cidadãos, jornalistas e órgãos de controle,
+            permitindo que todos acompanhem e fiscalizem de perto os gastos públicos, promovendo uma gestão pública mais eficiente e responsável.
           </p>
         </div>
-        <Footer/>
       </div>
     </MainLayout>
   );
