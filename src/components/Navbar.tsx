@@ -39,7 +39,7 @@ export default function Navbar({ activeButton }: NavbarProps) {
                         )}
                     />
                 </Link>
-                <Link href="https://github.com/exoonero/extrator" target="_blank">
+                <Link href="https://github.com/AmandaFerreira-prog/extrator_licita" target="_blank">
                     <GithubIcon className="fill-[#152544] hover:fill-gray-600 w-8 h-auto" />
                 </Link>
             </div>
