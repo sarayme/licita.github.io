@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 interface Licitacao {
     objeto: string;
     empresa: string;
-    valor_total: string;
+    total_gasto: number;
 }
 
 interface DetalhesLicitacoes {
@@ -41,8 +41,8 @@ export default function TabelaLicitacoes({ municipio, ano }: TabelaLicitacoesPro
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
-                if (data.detalhes[ano]) {
-                    setDetalhes(data.detalhes[ano]);
+                if (data.detalhe[ano]) {
+                    setDetalhes(data.detalhe[ano]);
                 }
             });
     }, [municipio, ano]);
@@ -76,7 +76,7 @@ export default function TabelaLicitacoes({ municipio, ano }: TabelaLicitacoesPro
                                 )}
                                 <td className="px-4 py-2">{licitacao.objeto}</td>
                                 <td className="px-4 py-2">{licitacao.empresa}</td>
-                                <td className="px-4 py-2">{licitacao.valor_total}</td>
+                                <td className="px-4 py-2">{licitacao.total_gasto}</td>
                             </tr>
                         ))
                     ) : (

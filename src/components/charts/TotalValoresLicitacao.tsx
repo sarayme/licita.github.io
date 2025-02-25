@@ -6,16 +6,16 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface Detalhe {
   resumo: {
-    total_licitacoes: number;
-    valor_total: string;
+    num_contratos: number;
+    total_gasto: number;
   };
-  total_licitacoes: number;
-  valor_total: string;
+  num_contratos: number;
+  total_gasto: number;
 }
 
 interface DetalheAno {
-  total_licitacoes: number;
-  valor_total: string;
+  num_contratos: number;
+  total_gasto: number;
 }
 
 interface TotalLicitacoesProps {
@@ -30,8 +30,8 @@ export default function TotalValoresLicitacoes({ municipio, ano }: TotalLicitaco
   function dadosGeraisAnos(){
     const url =
         municipio === "geral"
-            ? "https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/joao-pessoa.json"
-            : `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/${municipio}.json`;
+            ? "https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/docs/docs/site/dados/geral.json"
+            : `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/docs/docs/site/dados/${municipio}.json`;
     console.log("aqui");
 
     fetch(url, {})
@@ -41,23 +41,25 @@ export default function TotalValoresLicitacoes({ municipio, ano }: TotalLicitaco
           const licitacoes: number[] = [];
           const valores: number[] = [];
           // const primeiroAnoComDados = Number(Object.keys(detalhe).sort()[0]);
-          //
+          
           // for (let ano = 2014; ano < primeiroAnoComDados; ano++) {
           //     licitacoes.push(0);
           // }
 
           Object.values(detalhe).forEach((elemento) => {
-            let licitacao = elemento.resumo.total_licitacoes
+            let licitacao = elemento.resumo.num_contratos
             licitacoes.push(licitacao);
-            valores.push(parseFloat(elemento.resumo.valor_total.replace(/[^0-9,-]+/g,"").replace(",", ".")));
+            console.log("aqui")
+            console.log(elemento.resumo)
+            valores.push(elemento.resumo.total_gasto)
+            //valores.push(parseFloat(elemento.resumo.valor_total.replace(/[^0-9,-]+/g,"").replace(",", ".")));
           });
-          console.log(licitacoes)
           setDataValores(valores);
         });
   }
 
   function dadosAno() {
-    const url = `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/${municipio}.json`;
+    const url = `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/docs/docs/site/dados/${municipio}.json`;
 
     fetch(url, {})
         .then((res) => res.json())
@@ -69,8 +71,9 @@ export default function TotalValoresLicitacoes({ municipio, ano }: TotalLicitaco
           Object.entries(detalhe).forEach(([mes, dados]) => {
             if (mes !== "resumo") {
               const index = Number(mes) - 1;
-              licitacoes[index] = dados.total_licitacoes;
-              valores[index] = parseFloat(dados.valor_total.replace(/[^0-9,-]+/g,"").replace(",", "."));
+              licitacoes[index] = dados.num_contratos;
+              valores[index] = dados.total_gasto;
+              //valores[index] = parseFloat(dados.valor_total.replace(/[^0-9,-]+/g,"").replace(",", "."));
             }
           });
           setDataValores(valores);
@@ -84,6 +87,9 @@ export default function TotalValoresLicitacoes({ municipio, ano }: TotalLicitaco
   const chartData = useMemo(() => {
     return {
       options: {
+        dataLabels: {
+          enabled: false, // Desativa a exibição dos valores nas colunas
+        },
         series: [
           {
             name: "Valor Total (R$)",
@@ -102,6 +108,7 @@ export default function TotalValoresLicitacoes({ municipio, ano }: TotalLicitaco
                   "2021",
                   "2022",
                   "2023",
+                  "2024"
               ] : ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
               labels: {
                   style: {

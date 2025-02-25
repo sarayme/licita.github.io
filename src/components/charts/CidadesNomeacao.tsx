@@ -7,7 +7,7 @@ export default function CidadesNomeacao() {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch("https://raw.githubusercontent.com/exoonero/extrator/main/docs/site/dados/geral.json", {})
+    fetch("https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/docs/docs/site/dados/geral.json", {})
       .then((res) => res.json())
       .then((data) => {
         setData(data);

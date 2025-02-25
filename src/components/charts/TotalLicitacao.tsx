@@ -6,16 +6,16 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface Detalhe {
   resumo: {
-    total_licitacoes: number;
-    valor_total: string;
+    num_contratos: number;
+    total_gasto: number;
   };
-  total_licitacoes: number;
-  valor_total: string;
+  num_contratos: number;
+  total_gasto: number;
 }
 
 interface DetalheAno {
-  total_licitacoes: number;
-  valor_total: string;
+  num_contratos: number;
+  total_gasto: number;
 }
 
 interface TotalLicitacoesProps {
@@ -30,8 +30,8 @@ export default function TotalLicitacoes({ municipio, ano }: TotalLicitacoesProps
   function dadosGeraisAnos(){
     const url =
         municipio === "geral"
-            ? "https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/joao-pessoa.json"
-            : `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/${municipio}.json`;
+            ? "https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/docs/docs/site/dados/geral.json"
+            : `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/docs/docs/site/dados/${municipio}.json`;
     console.log("aqui");
 
     fetch(url, {})
@@ -42,9 +42,11 @@ export default function TotalLicitacoes({ municipio, ano }: TotalLicitacoesProps
           const valores: number[] = [];
 
           Object.values(detalhe).forEach((elemento) => {
-            let licitacao = elemento.resumo.total_licitacoes
+            let licitacao = elemento.resumo.num_contratos
             licitacoes.push(licitacao);
-            valores.push(parseFloat(elemento.resumo.valor_total.replace(/[^0-9,-]+/g,"").replace(",", ".")));
+            console.log(elemento.resumo)
+            valores.push(elemento.resumo.total_gasto)
+            //valores.push(parseFloat(elemento.resumo.total_gasto.replace(/[^0-9,-]+/g,"").replace(",", ".")));
           });
           console.log(licitacoes)
           setDataLicitacoes(licitacoes);
@@ -52,7 +54,7 @@ export default function TotalLicitacoes({ municipio, ano }: TotalLicitacoesProps
   }
 
   function dadosAno() {
-    const url = `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/${municipio}.json`;
+    const url = `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/docs/docs/site/dados/${municipio}.json`;
 
     fetch(url, {})
         .then((res) => res.json())
@@ -63,7 +65,7 @@ export default function TotalLicitacoes({ municipio, ano }: TotalLicitacoesProps
           Object.entries(detalhe).forEach(([mes, dados]) => {
             if (mes !== "resumo") {
               const index = Number(mes) - 1;
-              licitacoes[index] = dados.total_licitacoes;
+              licitacoes[index] = dados.num_contratos;
             }
           });
           setDataLicitacoes(licitacoes);
@@ -95,6 +97,7 @@ export default function TotalLicitacoes({ municipio, ano }: TotalLicitacoesProps
                   "2021",
                   "2022",
                   "2023",
+                  "2024"
               ] : ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
               labels: {
                   style: {
