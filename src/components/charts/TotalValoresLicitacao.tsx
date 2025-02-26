@@ -40,11 +40,17 @@ export default function TotalValoresLicitacoes({ municipio, ano }: TotalLicitaco
           const detalhe = data.detalhe as Record<string, Detalhe>;
           const licitacoes: number[] = [];
           const valores: number[] = [];
-          // const primeiroAnoComDados = Number(Object.keys(detalhe).sort()[0]);
+          const primeiroAnoComDados = Number(Object.keys(detalhe).sort()[0]);
+          console.log("aqui mulher")
+          console.log(primeiroAnoComDados)
           
           // for (let ano = 2014; ano < primeiroAnoComDados; ano++) {
           //     licitacoes.push(0);
           // }
+
+          for (let ano = primeiroAnoComDados; ano <= 2025; ano++) {
+              licitacoes.push(0);
+          }
 
           Object.values(detalhe).forEach((elemento) => {
             let licitacao = elemento.resumo.num_contratos

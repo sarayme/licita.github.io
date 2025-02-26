@@ -83,7 +83,6 @@ export default function Municipio({
                     <option value="aparecida">Aparecida</option>
                     <option value="arara">Arara</option>
                     <option value="areia-de-baraunas">Areia de Baraúnas</option>
-                    <option value="areial">Areial</option>
                     <option value="bananeiras">Bananeiras</option>
                     <option value="barra-de-santa-rosa">Barra de Santa Rosa</option>
                     <option value="bayeux">Bayeux</option>
