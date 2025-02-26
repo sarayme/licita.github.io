@@ -89,7 +89,7 @@ export default function Sobre() {
             Além destes, todo o código produzido é aberto e distribuído de forma
             livre no repositório
             <Link
-              href="https://github.com/exoonero/extrator"
+              href="https://github.com/sarayme/licita.github.io"
               className="underline decoration-solid mx-1"
             >
               exoonero/extrator
