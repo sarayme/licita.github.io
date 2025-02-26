@@ -4,11 +4,16 @@ import React, { useEffect, useState } from "react";
 interface Licitacao {
     objeto: string;
     empresa: string;
-    total_gasto: number;
+    valor_total: string;
 }
 
 interface DetalhesLicitacoes {
-    [mes: string]: Licitacao[];
+    [mes: string]: {
+        num_diarios: number;
+        num_contratos: number;
+        total_gasto: number;
+        empresas_mensais: Licitacao[];
+    };
 }
 
 interface TabelaLicitacoesProps {
@@ -32,10 +37,10 @@ const meses = [
 ];
 
 export default function TabelaLicitacoes({ municipio, ano }: TabelaLicitacoesProps) {
-    const [detalhes, setDetalhes] = useState<DetalhesLicitacoes>({});
+    const [detalhe, setDetalhes] = useState<DetalhesLicitacoes>({});
 
     useEffect(() => {
-        const url = `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/main/docs/empresas-${municipio}.json`;
+        const url = `https://raw.githubusercontent.com/AmandaFerreira-prog/extrator_licita/refs/heads/main/json/empresas/${municipio}.json`;
 
         fetch(url)
             .then((res) => res.json())
@@ -61,7 +66,7 @@ export default function TabelaLicitacoes({ municipio, ano }: TabelaLicitacoesPro
                 <tbody>
                 {meses.map((mes, index) => {
                     const numeroMes = (index + 1).toString().padStart(2, "0");
-                    const licitacoesDoMes = detalhes[numeroMes] || [];
+                    const licitacoesDoMes = detalhe[numeroMes]?.empresas_mensais || [];
 
                     return licitacoesDoMes.length > 0 ? (
                         licitacoesDoMes.map((licitacao, idx) => (
@@ -76,14 +81,14 @@ export default function TabelaLicitacoes({ municipio, ano }: TabelaLicitacoesPro
                                 )}
                                 <td className="px-4 py-2">{licitacao.objeto}</td>
                                 <td className="px-4 py-2">{licitacao.empresa}</td>
-                                <td className="px-4 py-2">{licitacao.total_gasto}</td>
+                                <td className="px-4 py-2">{licitacao.valor_total}</td>
                             </tr>
                         ))
                     ) : (
                         <tr key={numeroMes} className="border-t">
                             <td className="px-4 py-2 font-semibold">{mes}</td>
                             <td className="px-4 py-2" colSpan={3}>
-                                Nenhuma licitação
+                                Não identificado
                             </td>
                         </tr>
                     );
